@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'measurements',
+    'places',
 ]
 
 MIDDLEWARE = [
@@ -77,14 +77,13 @@ WSGI_APPLICATION = 'monitoring.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get("MEASUREMENTS_DB", "measurements_db"),
-        'USER': os.environ.get("MEASUREMENTS_DB_USER", "measurements_user"),
-        'PASSWORD': os.environ.get("MEASUREMENTS_DB_PASSWD", "isis2503"),
-        'HOST': os.environ.get("MEASUREMENTS_DB_HOST", "0.0.0.0"),
-        'PORT': os.environ.get("MEASUREMENTS_DB_PORT", "5432")
+        'NAME': os.environ.get("PLACES_DB", "places_db"),
+        'USER': os.environ.get("PLACES_DB_USER", "places_user"),
+        'PASSWORD': os.environ.get("PLACES_DB_PASSWD", "isis2503"),
+        'HOST': os.environ.get("PLACES_DB_HOST", "0.0.0.0"),
+        'PORT': os.environ.get("PLACES_DB_PORT", "5432")
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -132,6 +131,3 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
-
-PATH_VAR = "http://" + os.environ.get("VARIABLES_HOST", "0.0.0.0") + ":" + os.environ.get("VARIABLES_PORT", "8080") + "/variables"
-PATH_PLACES = "http://" + os.environ.get("PLACES_HOST", "0.0.0.0") + ":" + os.environ.get("PLACES_PORT", "8080") + "/places"
