@@ -52,17 +52,17 @@ def MeasurementsCreate(request):
         data_json = json.loads(data)
         measurement_list = []
         for measurement in data_json:
-                    if check_variable(measurement) == False:
-                        return HttpResponse("unsuccessfully created measurement. Variable does not exist")
-                    elif check_place(measurement) == False:
-                        return HttpResponse("unsuccessfully created measurement. Place does not exist")
-                    else:
-                        db_measurement = Measurement()
-                        db_measurement.variable = measurement['variable']
-                        db_measurement.value = measurement['value']
-                        db_measurement.unit = measurement['unit']
-                        db_measurement.place = measurement['place']
-                        measurement_list.append(db_measurement)
+            if check_variable(measurement) == False:
+                return HttpResponse("unsuccessfully created measurement. Variable does not exist")
+            elif check_place(measurement) == False:
+                return HttpResponse("unsuccessfully created measurement. Place does not exist")
+            else:
+                db_measurement = Measurement()
+                db_measurement.variable = measurement['variable']
+                db_measurement.value = measurement['value']
+                db_measurement.unit = measurement['unit']
+                db_measurement.place = measurement['place']
+                measurement_list.append(db_measurement)
         
         Measurement.objects.bulk_create(measurement_list)
         return HttpResponse("successfully created measurements")
